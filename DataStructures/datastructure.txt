@@ -1,0 +1,48 @@
+1)  #include<set>
+    std::set <class T, 
+            class Compare=less<T>, //This sets in sorte order
+            class Alloc= allocator<T>
+            > class set;
+
+    -> sets are the container that stores unique elements
+    -> Each value stored in set must be unique
+    -> Element once inserted cannot be modified but inserted or removed
+    -> Internally the elements in set are always sorted
+    -> Slower than unordered_set
+    -> implemented as binary search tree
+
+2)  #include<unordered_set>
+    std::unordered_set <class T,
+                class Hash = hash<Key>,
+                class Pred = equal_to<Key>,
+                class Alloc = allocator<Key>
+                >
+     -> Divides list into bucket and stores
+     -> Stores only unique element
+     -> Faster retrival than set
+     -> Element once inserted cannot be modified but only erased
+     -> -std =c++0x supports it
+
+Note: Comparision between Set and Unordered_set
+    -> set uses less memory than unordered set to store the same amount of element
+    -> For small number of elements the lookup in set might be faster
+    -> set sorts the element in order, use when order is important
+    -> Can compare two sets with == operator but not with unordered_set
+
+Note: cbegin,cend vs begin,end
+    -> begin end does not make passing vector or other container constant so the functor it is passing to can modify it 
+    -> std::foreach(vec.begin(),vec.end(), someFunctor())
+    -> Here someFunctor can modify the elements. So to pass const elemets cbegin and cend where we can get the constant iterator so that it works on const int& index rather than int& index
+
+3) #include<map>
+    std::map <class Key, 
+                class T, 
+                class Compare = less <Key>, 
+                class Alloc = allocator<pair<const Key, T>> 
+                > class map;
+    -> Implemented as binary search tree
+    -> maintains the order of (sorted order)
+    -> slower than unordered_map
+    -> find, erase, begin, end, insert(std::pair<char,int>(*str,0)) are classic functions used
+    -> Stores two element key and value where key is unique
+    -> HashMap is unordered_map and TreeMap is map
