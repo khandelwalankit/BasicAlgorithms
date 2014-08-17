@@ -1,7 +1,7 @@
 #include "Node.h"
 #include<iostream>
 #include<stdlib.h>
-
+#include<set>
 
 //Member functions
 void Node::appendToTail(int d){
@@ -10,6 +10,13 @@ void Node::appendToTail(int d){
   while(current->next!=NULL)  
     current=current->next;
   current->next = end;  
+}
+
+Node* Node::appendToStart(Node *head, int d){
+  Node *begin = new Node{d};
+  Node *current = head;
+  begin->next=current;
+  return begin;
 }
 
 Node* Node::deleteNodes(Node *head,int d){
@@ -66,10 +73,79 @@ void Node::traverseNode(Node *head){
   std::cout<<"No Node found"<<std::endl;
 }
 
-
-Node* Node::appendToStart(Node *head, int d){
-  Node *begin = new Node{d};
-  Node *current = head;
-  begin->next=current;
-  return begin;
+Node* Node::removeDuplicates(Node* head){
+  std::set<int> uniq_list_val;
+  Node* current = head;
+  if(!verifyNodeEmpty(current)){
+    uniq_list_val.insert(current->data);
+    while(current->next!=NULL){
+      if(uniq_list_val.count(current->next->data)==1)
+        current->next = current->next->next;
+      else{
+        uniq_list_val.insert(current->next->data);
+        current=current->next;
+      }
+    }
+ }
+ return head;
 }
+
+Node* Node::findkthToLast(Node* head, int k){
+  Node* current = head;
+  Node* headstart = head;
+  int count = 1;
+  while(count<=k){
+    headstart=headstart->next;
+    count++;
+  }
+  while(headstart!=NULL){
+    current = current->next;
+    headstart = headstart->next;
+  }
+  return current;
+}
+
+Node* Node::mergeList(Node* head1, Node* head2){
+  Node* current = head1;
+  current = findkthToLast(current,1);
+  current->next = head2;
+  return head1;  
+}
+
+Node* Node::zigzagMergeList(Node* head1, Node* head2){
+  Node* current1 = head1;
+  Node* current2 = head2;
+  Node* temp1 = NULL;
+  Node* temp2 = NULL;
+  int i = 0;
+  while(current1!=NULL && current2!=NULL){
+    if(i%2 == 0){
+      if(i!=0){
+        current1->next = temp1;
+        current1 = current1->next;
+      }
+    }
+    else
+    {
+      temp1 = current1->next;
+      current1->next = current2;
+      current2 = current2->next;
+      current1 = current1->next;
+    }
+    i++;    
+  }
+  if(current2==NULL)
+    current1 = mergeList(current1,temp1);
+  else if(current1==NULL){
+    current1 = mergeList(head1,current2);
+  }
+  return head1;
+}
+
+int Node::getValue(Node* head){
+  if(!verifyNodeEmpty(head))
+    return head->data;
+  return NULL;
+}
+
+
