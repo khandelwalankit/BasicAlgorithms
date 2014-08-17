@@ -65,3 +65,11 @@ void Node::traverseNode(Node *head){
  else 
   std::cout<<"No Node found"<<std::endl;
 }
+
+
+Node* Node::appendToStart(Node *head, int d){
+  Node *begin = new Node{d};
+  Node *current = head;
+  begin->next=current;
+  return begin;
+}

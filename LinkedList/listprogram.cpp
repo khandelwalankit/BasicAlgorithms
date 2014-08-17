@@ -6,12 +6,13 @@ int main(int argc, char **argv){
   head.appendToTail(20);
   head.appendToTail(30);
   head.appendToTail(40);
-  Node *newhead = head.deleteNodes(&head,20);
-  Node *searchedNode = head.searchNode(&head,20);
+  Node *newhead = head.appendToStart(&head,5);
+  Node *newhead1 = head.deleteNodes(newhead,20);
+  Node *searchedNode = head.searchNode(newhead,20);
   if(searchedNode!=NULL)
     std::cout<< "Found Data"<<std::endl;
   else
     std::cout<< "Data not Found" <<std::endl;
-  head.traverseNode(&head);
+  head.traverseNode(newhead);
   return 1;
 }
