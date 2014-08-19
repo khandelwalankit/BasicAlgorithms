@@ -30,5 +30,16 @@ int main(int argc, char **argv){
   else
     std::cout<< "Data not Found" <<std::endl;
   head.traverseNode(newhead);
+  Node checkPalindrome{10};
+  //checkPalindrome.appendToTail(20);
+  //checkPalindrome.appendToTail(30);
+  //checkPalindrome.appendToTail(40);
+  //checkPalindrome.appendToTail(30);
+  //checkPalindrome.appendToTail(20);
+  checkPalindrome.appendToTail(10);
+  if(checkPalindrome.isPalindrome(&checkPalindrome))
+    std::cout<<"List is Palindrome"<<std::endl;
+  else
+    std::cout<<"List is not Palindrome"<<std::endl;
   return 1;
 }

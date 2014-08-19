@@ -15,13 +15,14 @@ class Node
     void traverseNode(Node*);  
     Node* deleteNodes(Node*,int);
     Node* searchNode(Node*,int);
-    bool verifyNodeEmpty(Node*);
+    bool isEmpty(Node*);
     int sizeOfNode(Node*);
     int getValue(Node*);
     Node* removeDuplicates(Node*);
     Node* findkthToLast(Node*,int);
     Node* mergeList(Node*,Node*);
     Node* zigzagMergeList(Node*, Node*);
+    bool isPalindrome(Node*);
 };
 #endif
 

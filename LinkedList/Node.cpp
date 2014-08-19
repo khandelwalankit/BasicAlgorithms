@@ -2,6 +2,7 @@
 #include<iostream>
 #include<stdlib.h>
 #include<set>
+#include<stack>
 
 //Member functions
 void Node::appendToTail(int d){
@@ -45,7 +46,7 @@ Node* Node::searchNode(Node *head,int d){
   return current;
 }
 
-bool Node::verifyNodeEmpty(Node *head){
+bool Node::isEmpty(Node *head){
   if(head==NULL)
     return true;
   return false;
@@ -54,17 +55,19 @@ bool Node::verifyNodeEmpty(Node *head){
 int Node::sizeOfNode(Node *head){
   Node *current = head;
   int count = 0;
-  if(!verifyNodeEmpty(current)){
+  if(!isEmpty(current)){
     count++;
-    while(current->next!=NULL)
+    while(current->next!=NULL){
+      current=current->next;
       count++;
+    }
   }
   return count;
 }
 
 void Node::traverseNode(Node *head){
  Node *current = head;
- if(!verifyNodeEmpty(current))
+ if(!isEmpty(current))
   while(current!=NULL){
     std::cout<<"Node Value : "<<current->data<<std::endl;
     current=current->next;
@@ -76,7 +79,7 @@ void Node::traverseNode(Node *head){
 Node* Node::removeDuplicates(Node* head){
   std::set<int> uniq_list_val;
   Node* current = head;
-  if(!verifyNodeEmpty(current)){
+  if(!isEmpty(current)){
     uniq_list_val.insert(current->data);
     while(current->next!=NULL){
       if(uniq_list_val.count(current->next->data)==1)
@@ -143,9 +146,34 @@ Node* Node::zigzagMergeList(Node* head1, Node* head2){
 }
 
 int Node::getValue(Node* head){
-  if(!verifyNodeEmpty(head))
+  if(!isEmpty(head))
     return head->data;
   return NULL;
 }
 
-
+bool Node::isPalindrome(Node* head){
+  
+  Node *current = head;
+  int size = sizeOfNode(current);
+  int halfway_list = (size/2);
+  std::stack<int> store_list;
+  int count=0;
+  while(count<halfway_list){
+      store_list.push(current->data);
+      current=current->next;
+      count++;
+  }
+  
+  if(size%2 != 0){
+    current=current->next;  
+  }
+  while(!store_list.empty()){
+    if(current->data != store_list.top())
+      return false;
+    store_list.pop();
+    current=current->next;
+  }
+  if(current!=NULL)
+    return false;
+  return true;
+}
