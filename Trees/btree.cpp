@@ -17,19 +17,29 @@ bool btree::isEmpty(){
   return false;
 }
 
-void btree::insertNode(int key, node *leaf){
-  if(leaf->key_value > key){
-    if(leaf->left!=NULL)
+void btree::insertLeftNode(int key, node *leaf){
+ if(leaf->left!=NULL)
       insertNode(key,leaf->left);
-    leaf->left = new node;
-    leaf->left->key_value = key;         
-  }
-  else{
-    if(leaf->right!=NULL)
+    else{
+      leaf->left = new node;
+      leaf->left->key_value = key; 
+    }
+}
+
+void btree::insertRightNode(int key, node* leaf){
+ if(leaf->right!=NULL)
       insertNode(key,leaf->right);
-    leaf->right = new node;
-    leaf->right->key_value = key;
-  }
+    else{
+      leaf->right = new node;
+      leaf->right->key_value = key;
+    }
+}
+
+void btree::insertNode(int key, node *leaf){
+  if(leaf->key_value > key)
+    insertLeftNode(key,leaf);           
+  else
+    insertRightNode(key,leaf);
 }
 
 node* btree::searchNode(int key, node* leaf){
@@ -64,6 +74,43 @@ void btree::insertNode(int key){
 
 node* btree::searchNode(int key){
   return searchNode(key,root);
+}
+
+//pnode: parent, rnode: right child, lnode: left child
+void btree::traversalInOrder(node* pnode, std::vector<int> *list){
+  if(pnode==NULL)
+    return;
+  traversalInOrder(pnode->left,list);
+  list->push_back(pnode->key_value);
+  traversalInOrder(pnode->right,list);
+}
+
+void btree::traversalPostOrder(node* pnode, std::vector<int> *list){
+  if(pnode==NULL)
+    return;
+  traversalPostOrder(pnode->left,list);
+  traversalPostOrder(pnode->right,list);
+  list->push_back(pnode->key_value);
+}
+
+void btree::traversalPreOrder(node* pnode,std::vector<int> *list){
+  if(pnode==NULL)
+    return;
+  list->push_back(pnode->key_value);
+  traversalPreOrder(pnode->left,list);
+  traversalPreOrder(pnode->right,list);
+}
+
+void btree::traversalPreOrder(std::vector<int> *list){
+  traversalPreOrder(root,list);
+} 
+
+void btree::traversalInOrder(std::vector<int> *list){
+  traversalInOrder(root,list);
+}
+
+void btree::traversalPostOrder(std::vector<int> *list){
+  traversalPostOrder(root,list);
 }
 
 void btree::destroyTree(){
