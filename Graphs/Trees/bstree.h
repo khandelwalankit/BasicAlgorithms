@@ -10,7 +10,7 @@ class bstree:public btree{
     bstree():btree(){
     }
     ~bstree();
-    void balanceTree(std::vector<int> *list, bstree *bs);    
+    void balanceTree(std::vector<int> &list, bstree &bs);    
 };
 
 #endif

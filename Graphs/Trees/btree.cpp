@@ -101,16 +101,16 @@ void btree::traversalPreOrder(node* pnode,std::vector<int> *list){
   traversalPreOrder(pnode->right,list);
 }
 
-void btree::traversalPreOrder(std::vector<int> *list){
-  traversalPreOrder(root,list);
+void btree::traversalPreOrder(std::vector<int> &list){
+  traversalPreOrder(root,&list);
 } 
 
-void btree::traversalInOrder(std::vector<int> *list){
-  traversalInOrder(root,list);
+void btree::traversalInOrder(std::vector<int> &list){
+  traversalInOrder(root,&list);
 }
 
-void btree::traversalPostOrder(std::vector<int> *list){
-  traversalPostOrder(root,list);
+void btree::traversalPostOrder(std::vector<int> &list){
+  traversalPostOrder(root,&list);
 }
 
 int btree::heightTree(node* pnode){
@@ -122,6 +122,7 @@ int btree::heightTree(node* pnode){
 int btree::heightTree(){
   return heightTree(root);
 }
+
 void btree::traversalBFS(node* pnode, std::forward_list<int> *list, int level){
   if(level==0){
     list->push_front(pnode->key_value);
@@ -136,10 +137,10 @@ void btree::traversalBFS(node* pnode, std::forward_list<int> *list, int level){
   }
 }
 
-void btree::traversalBFS(std::forward_list<int> *list){
+void btree::traversalBFS(std::forward_list<int> &list){
   int height = heightTree(root);
   for (int i =height;i>=0;i--){
-    traversalBFS(root,list,i);  
+    traversalBFS(root,&list,i);  
   }
 }
 

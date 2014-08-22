@@ -19,10 +19,10 @@ class btree{
     node* searchNode(int);
     void destroyTree();
     bool isEmpty();
-    void traversalInOrder(std::vector<int>*);
-    void traversalPostOrder(std::vector<int>*);
-    void traversalPreOrder(std::vector<int>*);
-    void traversalBFS(std::forward_list<int>*);
+    void traversalInOrder(std::vector<int>&);
+    void traversalPostOrder(std::vector<int>&);
+    void traversalPreOrder(std::vector<int>&);
+    void traversalBFS(std::forward_list<int>&);
     int heightTree();
   protected:
     void insertNode(int,node*);
