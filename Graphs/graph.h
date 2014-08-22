@@ -18,27 +18,28 @@ class edge{
 class vertex{
   protected:
    string vertex_name; 
-   std::vector<edge> edges;
+   //std::vector<edge> edges;
   public:
     vertex(string);
     string getVertexId();
-    void addEdge(vertex &dest);
-    void addBiDirectionalEdge(vertex &dest);     
-    void addEdge(vertex &dest, std::size_t dist);
-    void addBiDirectionalEdge(vertex &dest, std::size_t dist);   
-    std::vector<edge> getAllEdges();  
+    //std::vector<edge> getAllEdges();  
 };
 
 class graph{
   //static std::unordered_set<string> list_graphs;
-  typedef std::unordered_map<vertex,std::unordered_set<vertex>> graph_map;
+  typedef std::unordered_map<vertex&,std::unordered_set<vertex&>> graph_map;
   protected:
     string graph_name;
     graph_map graph_vertex;
+    std::unordered_set<vertex&> vertices;
   public:
     graph(string);
     void add_vertex(vertex &);
     graph_map getGraph();
+    void addEdge(vertex &orig,vertex &dest);
+    void addBiDirectionalEdge(vertex &orig, vertex &dest);     
+    void addEdge(vertex &orig, vertex &dest, std::size_t dist);
+    void addBiDirectionalEdge(vertex &orig, vertex &dest, std::size_t dist);   
 }
 
 #endif
