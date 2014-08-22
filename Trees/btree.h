@@ -3,6 +3,7 @@
 
 #include<iostream>
 #include<vector>
+#include<forward_list>
 
 struct node{
   int key_value;
@@ -21,6 +22,8 @@ class btree{
     void traversalInOrder(std::vector<int>*);
     void traversalPostOrder(std::vector<int>*);
     void traversalPreOrder(std::vector<int>*);
+    void traversalBFS(std::forward_list<int>*);
+    int heightTree();
   protected:
     void insertNode(int,node*);
     void insertLeftNode(int,node*);
@@ -30,6 +33,8 @@ class btree{
     void traversalInOrder(node*, std::vector<int>*);
     void traversalPreOrder(node*,std::vector<int>*);
     void traversalPostOrder(node*,std::vector<int>*);
+    void traversalBFS(node*,std::forward_list<int>*,int);
+    int heightTree(node*);
     node *root;
 };
 

@@ -1,7 +1,7 @@
 #include "btree.h"
 #include <iostream>
 #include <stdlib.h>
-
+#include <algorithm>
 //Member Functions of class btree
 btree::btree(){
   root = NULL;
@@ -111,6 +111,36 @@ void btree::traversalInOrder(std::vector<int> *list){
 
 void btree::traversalPostOrder(std::vector<int> *list){
   traversalPostOrder(root,list);
+}
+
+int btree::heightTree(node* pnode){
+  if(pnode == NULL)
+    return -1;
+  return  (std::max(heightTree(pnode->left),heightTree(pnode->right)) + 1);  
+}
+
+int btree::heightTree(){
+  return heightTree(root);
+}
+void btree::traversalBFS(node* pnode, std::forward_list<int> *list, int level){
+  if(level==0){
+    list->push_front(pnode->key_value);
+  }
+  else{
+    int leftlevel = level;
+    int rightlevel = level;
+    if(pnode->left!=NULL)
+      traversalBFS(pnode->left,list,--leftlevel);
+    if(pnode->right!=NULL)
+      traversalBFS(pnode->right,list,--rightlevel);
+  }
+}
+
+void btree::traversalBFS(std::forward_list<int> *list){
+  int height = heightTree(root);
+  for (int i =height;i>=0;i--){
+    traversalBFS(root,list,i);  
+  }
 }
 
 void btree::destroyTree(){
