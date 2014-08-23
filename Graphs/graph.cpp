@@ -1,5 +1,5 @@
 #include "graph.h"
-
+#include <utility>
 //member functions of the edge class
 edge::edge(std::string orig, std::string dest){
   //origin.insert(orig.begin(),orig.end());
@@ -49,16 +49,16 @@ void graph::addEdge(vertex &orig,vertex &dest){
   std::string destVert = dest.getVertexId();
   std::unordered_set<std::string> destVertices;
   graph_map::iterator it = graph_vertex.find(origVert);
-  typedef std::make_pair<std::string,std::unordered_set<std::string> > vertex_map;
-  if(it == graph_vertex.end()){  
+   if(it == graph_vertex.end()){  
     destVertices.insert(destVert);  
-    graph_vertex.insert(vertex_map(origVert, destVertices));
+    graph_vertex.insert(std::pair<std::string,std::unordered_set<std::string> >
+(origVert, destVertices));
   }
   else{
     destVertices = it->second;
     destVertices.insert(destVert);
     graph_vertex.erase(origVert);
-    graph_vertex.insert(vertex_map(origVert, destVertices));
+    graph_vertex.insert(std::pair<std::string,std::unordered_set<std::string> >(origVert, destVertices));
   }
   edge route(origVert,destVert);
   edges.push_back(route);
@@ -85,10 +85,10 @@ void graph::addBiDirectionalEdge(vertex &orig, vertex &dest, std::size_t dist){
   addEdge(dest,orig,dist);
 }
 
-graph_map graph::getGraph(){
+graph::graph_map graph::getGraph(){
   return graph_vertex;
 }
 
-std::vector<edge&> graph::getAllEdges(){
+std::vector<edge> graph::getAllEdges(){
   return edges;
 }

@@ -32,18 +32,18 @@ class graph{
   typedef std::unordered_map<std::string,std::unordered_set<std::string>> graph_map;
   protected:
     std::string graph_name;
-    graph_map graph_vertex;
+    graph::graph_map graph_vertex;
     std::unordered_set<std::string> vertices;
-    std::vector<edge&> edges;
+    std::vector<edge> edges;
   public:
     graph(std::string);
-    void addVertex(vertex &);
+    void addVertex(vertex&);
     void addEdge(vertex &orig,vertex &dest);
     void addBiDirectionalEdge(vertex &orig, vertex &dest);     
     void addEdge(vertex &orig, vertex &dest, std::size_t dist);
     void addBiDirectionalEdge(vertex &orig, vertex &dest, std::size_t dist);   
-    std::vector<edge&> getAllEdges();  
-    graph_map getGraph();
-}
+    std::vector<edge> getAllEdges();  
+    graph::graph_map getGraph();
+};
 
 #endif
