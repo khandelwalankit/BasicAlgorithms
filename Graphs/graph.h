@@ -1,45 +1,49 @@
 #ifndef GRAPH_H_
 #define GRAPH_H_
-#include<iostream>
+#include <iostream>
+#include <string>
+#include <unordered_set>
+#include <unordered_map>
+#include <vector>
 
 class edge{
   protected:
-    vertex &origin;
-    vertex &destination;
+    std::string origin;
+    std::string destination;
     std::size_t distance;
   public:
-    edge(vertex& orig,vertex& dest);
-    edge(vertex& orig,vertex& dest,int dist);
-    vertex& getEdgeOrigin();
-    vertex& getEdgeDest();
+    edge(std::string orig,std::string dest);
+    void setEdgeDist(std::size_t);
+    std::string getEdgeOrigin();
+    std::string getEdgeDest();
     std::size_t getEdgeDist();    
 };
 
 class vertex{
   protected:
-   string vertex_name; 
-   //std::vector<edge> edges;
+   std::string vertex_name; 
   public:
-    vertex(string);
-    string getVertexId();
-    //std::vector<edge> getAllEdges();  
+    vertex(std::string);
+    std::string getVertexId();
 };
 
 class graph{
   //static std::unordered_set<string> list_graphs;
-  typedef std::unordered_map<vertex&,std::unordered_set<vertex&>> graph_map;
+  typedef std::unordered_map<std::string,std::unordered_set<std::string>> graph_map;
   protected:
-    string graph_name;
+    std::string graph_name;
     graph_map graph_vertex;
-    std::unordered_set<vertex&> vertices;
+    std::unordered_set<std::string> vertices;
+    std::vector<edge&> edges;
   public:
-    graph(string);
-    void add_vertex(vertex &);
-    graph_map getGraph();
+    graph(std::string);
+    void addVertex(vertex &);
     void addEdge(vertex &orig,vertex &dest);
     void addBiDirectionalEdge(vertex &orig, vertex &dest);     
     void addEdge(vertex &orig, vertex &dest, std::size_t dist);
     void addBiDirectionalEdge(vertex &orig, vertex &dest, std::size_t dist);   
+    std::vector<edge> getAllEdges();  
+    graph_map getGraph();
 }
 
 #endif
