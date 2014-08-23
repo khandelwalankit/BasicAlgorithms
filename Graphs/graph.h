@@ -42,7 +42,7 @@ class graph{
     void addBiDirectionalEdge(vertex &orig, vertex &dest);     
     void addEdge(vertex &orig, vertex &dest, std::size_t dist);
     void addBiDirectionalEdge(vertex &orig, vertex &dest, std::size_t dist);   
-    std::vector<edge> getAllEdges();  
+    std::vector<edge&> getAllEdges();  
     graph_map getGraph();
 }
 

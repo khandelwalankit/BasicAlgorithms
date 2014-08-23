@@ -1,5 +1,39 @@
 #include "graph.h"
 
+//member functions of the edge class
+edge::edge(std::string orig, std::string dest){
+  //origin.insert(orig.begin(),orig.end());
+  //destination.insert(dest.begin(),dest.end());
+  origin = orig;
+  destination = dest;
+  distance = 0;   
+}
+
+void edge::setEdgeDist(std::size_t dist){
+  distance = dist;  
+}
+
+std::string edge::getEdgeOrigin(){
+  return origin;
+}
+
+std::string edge::getEdgeDest(){
+  return destination;
+}
+
+std::size_t edge::getEdgeDist(){
+  return distance;
+}
+
+//member functions of vertex class
+vertex::vertex(std::string id){
+  vertex_name = id;
+}
+
+std::string vertex::getVertexId(){
+  return vertex_name;
+}
+
 //member functions of the graph class
 
 graph::graph(std::string name){
@@ -51,3 +85,10 @@ void graph::addBiDirectionalEdge(vertex &orig, vertex &dest, std::size_t dist){
   addEdge(dest,orig,dist);
 }
 
+graph_map graph::getGraph(){
+  return graph_vertex;
+}
+
+std::vector<edge&> graph::getAllEdges(){
+  return edges;
+}
