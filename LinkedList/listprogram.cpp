@@ -2,42 +2,49 @@
 #include "Node.h"
 
 int main(int argc, char **argv){
-  Node head{10};
-  head.appendToTail(20);
-  head.appendToTail(30);
-  head.appendToTail(50);
-  head.appendToTail(60);
-  head.appendToTail(70);
-  head.appendToTail(80);
-  head.appendToTail(90);
-  head.appendToTail(105);
-  head.appendToTail(106);
-  Node *newhead = head.appendToStart(&head,5);
-  newhead = head.appendToStart(newhead, 10);
-  newhead = head.appendToStart(newhead, 10);
-  newhead = head.appendToStart(newhead, 10);
-  Node *newhead1 = head.deleteNodes(newhead,20);
-  Node *searchedNode = head.searchNode(newhead,20);
-  newhead = head.removeDuplicates(newhead);
-  Node head2{100};
-  head2.appendToTail(200);
-  head2.appendToTail(400);
-  head2.appendToTail(800);
-  newhead = head.zigzagMergeList(newhead,&head2);
-  std::cout<< "Find 3rd last element: " << head.getValue((head.findkthToLast(newhead,3))) <<std::endl;
-  if(searchedNode!=NULL)
-    std::cout<< "Found Data"<<std::endl;
+  List ls;
+  ls.appendToTail(20);
+  ls.appendToTail(30);
+  ls.appendToTail(50);
+  ls.appendToTail(60);
+  ls.appendToTail(70);
+  ls.appendToTail(80);
+  ls.appendToTail(90);
+  ls.appendToTail(105);
+  ls.appendToTail(106);
+  ls.traverseList();  
+  ls.appendToStart(10);
+  ls.appendToStart(5);
+  ls.appendToStart(10);
+  ls.appendToStart(10);
+  ls.appendToStart(10);
+  ls.deleteListValue(20);
+  ls.traverseList();  
+  if(ls.searchListValue(10))
+    std::cout<< "Value Found" <<std::endl;
   else
-    std::cout<< "Data not Found" <<std::endl;
-  head.traverseNode(newhead);
-  Node checkPalindrome{10};
-  //checkPalindrome.appendToTail(20);
-  //checkPalindrome.appendToTail(30);
-  //checkPalindrome.appendToTail(40);
-  //checkPalindrome.appendToTail(30);
-  //checkPalindrome.appendToTail(20);
-  checkPalindrome.appendToTail(10);
-  if(checkPalindrome.isPalindrome(&checkPalindrome))
+    std::cout<<"Value not Found"<< std::endl;
+  
+  ls.removeDuplicates();
+  std::cout<<"List without Duplicates" <<std::endl;
+  ls.traverseList();  
+  std::cout<< "Find 3rd last element: " << ls.findkthToLast(3) <<std::endl;
+  List ls2;
+  ls2.appendToTail(200);
+  ls2.appendToTail(400);
+  ls2.appendToTail(800);
+  //ls.mergeList(ls2);
+  ls.zigzagMergeList(ls2);
+  ls.traverseList();
+  List checkPalindrome;
+  //checkPalindrome.appendToTail(10);
+  checkPalindrome.appendToTail(20);
+  checkPalindrome.appendToTail(30);
+  checkPalindrome.appendToTail(40);
+  checkPalindrome.appendToTail(30);
+  checkPalindrome.appendToTail(20);
+  //checkPalindrome.appendToTail(10);
+  if(checkPalindrome.isPalindrome())
     std::cout<<"List is Palindrome"<<std::endl;
   else
     std::cout<<"List is not Palindrome"<<std::endl;
