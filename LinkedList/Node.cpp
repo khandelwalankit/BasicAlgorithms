@@ -41,7 +41,6 @@ bool List::isEmpty(){
   return false;
 }
 
-
 void List::traverseList(){
  Node *current = head;
  if(!isEmpty())
@@ -52,8 +51,6 @@ void List::traverseList(){
  else 
   std::cout<<"No Node found"<<std::endl;
 }
-
-
 
 void List::appendToStart(int d){
   Node *begin = new Node(d);
