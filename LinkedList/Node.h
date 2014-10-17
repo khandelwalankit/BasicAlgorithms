@@ -37,7 +37,7 @@ class List{
     void mergeList(List);
     void zigzagMergeList(List);
     bool isPalindrome();
- 
+    void reverseList(); 
 };
 #endif
 
