@@ -1,5 +1,6 @@
 #include <iostream>
 
+int a;
 class Shape  {
 protected:
   std::string name;
